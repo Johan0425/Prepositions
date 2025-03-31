@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analizador de Proposiciones Lógicas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+  <header>
+    <div class="container">
+      <h1>Analizador de Proposiciones Lógicas</h1>
+      <p class="subtitle">Evalúa la validez de expresiones lógicas y genera tablas de verdad</p>
+    </div>
+  </header>
+  
+  <main class="container">
+    <section id="input-section" class="card">
+      <div class="card-header">
+        <h2>Ingresa tu texto</h2>
+        <div class="header-controls">
+          <button id="theme-toggle" class="icon-btn" title="Cambiar tema">
+            <i class="icon-moon"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="card-content">
+        <div class="text-input-wrapper">
+          <textarea id="text-input" placeholder="Escribe tu párrafo aquí (mínimo 10 caracteres, máximo 1000 caracteres)" rows="6" maxlength="1000"></textarea>
+          <span id="char-counter" class="char-counter">0/1000</span>
+        </div>
+        
+        <div class="variables-section">
+          <h3>Variables proposicionales</h3>
+          <div class="variable-inputs">
+            <div class="input-group">
+              <input type="text" id="variable-symbol" placeholder="Símbolo (a-z)" maxlength="1">
+              <input type="text" id="variable-meaning" placeholder="Significado de la proposición">
+              <button id="add-variable-btn" class="btn secondary-btn">Añadir</button>
+            </div>
+          </div>
+          <ul id="variables-list" class="variables-list">
+            <!-- Variables will be dynamically inserted here -->
+          </ul>
+        </div>
+        
+        <div class="expression-section">
+          <h3>Expresión lógica</h3>
+          <div class="expression-wrapper">
+            <input type="text" id="expression-input" placeholder="Ejemplo: p ∧ (q → r)">
+            <div class="symbols-help">
+              <span class="symbol-item" title="Y lógico">∧</span>
+              <span class="symbol-item" title="O lógico">∨</span>
+              <span class="symbol-item" title="Negación">¬</span>
+              <span class="symbol-item" title="Implicación">→</span>
+              <span class="symbol-item" title="Doble implicación">↔</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="action-buttons">
+          <button id="analyze-btn" class="btn primary-btn" disabled>
+            <i class="icon-search"></i> Analizar
+          </button>
+          <button id="clear-btn" class="btn secondary-btn">
+            <i class="icon-trash"></i> Limpiar
+          </button>
+          <button id="export-json" class="btn tertiary-btn">
+            <i class="icon-download"></i> Exportar JSON
+          </button>
+        </div>
+      </div>
+    </section>
+    
+    <section id="results-section" class="card" style="display: none;">
+      <!-- Results will be dynamically inserted here -->
+    </section>
+    
+    <section id="history-section" class="card">
+      <div class="card-header">
+        <h2>Historial de análisis</h2>
+      </div>
+      <div class="card-content">
+        <div id="history-container">
+          <!-- History items will be dynamically inserted here -->
+          <p class="no-history">No hay análisis guardados.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <div class="container">
+      <p>Analizador de Proposiciones Lógicas &copy; 2025</p>
+      <p>Un proyecto para análisis de lógica proposicional</p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+</body>
+</html>
