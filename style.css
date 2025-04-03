@@ -538,4 +538,40 @@
       max-width: none;
       padding: 0;
     }
+
+    /* buttons symbols*/
+
+    .symbol-buttons {
+      display: flex;
+      gap: 5px;
+      margin: 5px 0;
+    }
+    
+    .symbol-btn {
+      width: 30px;
+      height: 30px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .symbol-btn:hover {
+      background-color: #e9e9e9;
+    }
+    
+    body.dark .symbol-btn {
+      background-color: #333;
+      border-color: #444;
+      color: #fff;
+    }
+    
+    body.dark .symbol-btn:hover {
+      background-color: #444;
+    }
   }

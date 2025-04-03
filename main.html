@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Analizador de Proposiciones Lógicas</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Include Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="light-theme">
+<body class="light">
   <header>
     <div class="container">
       <h1>Analizador de Proposiciones Lógicas</h1>
@@ -20,25 +22,33 @@
       <div class="card-header">
         <h2>Ingresa tu texto</h2>
         <div class="header-controls">
-          <button id="theme-toggle" class="icon-btn" title="Cambiar tema">
-            <i class="icon-moon"></i>
+          <button id="theme-toggle" class="icon-btn" title="Cambiar tema" aria-label="Cambiar tema">
+            <i class="fas fa-moon"></i>
           </button>
         </div>
       </div>
       
       <div class="card-content">
         <div class="text-input-wrapper">
-          <textarea id="text-input" placeholder="Escribe tu párrafo aquí (mínimo 10 caracteres, máximo 1000 caracteres)" rows="6" maxlength="1000"></textarea>
-          <span id="char-counter" class="char-counter">0/1000</span>
+          <textarea id="text-input" placeholder="Escribe tu párrafo aquí (mínimo 10 caracteres, máximo 5000 caracteres)" rows="6" maxlength="5000"></textarea>
+          <span id="char-counter" class="char-counter">0/5000</span>
         </div>
         
         <div class="variables-section">
           <h3>Variables proposicionales</h3>
           <div class="variable-inputs">
             <div class="input-group">
-              <input type="text" id="variable-symbol" placeholder="Símbolo (a-z)" maxlength="1">
-              <input type="text" id="variable-meaning" placeholder="Significado de la proposición">
-              <button id="add-variable-btn" class="btn secondary-btn">Añadir</button>
+              <div class="input-wrapper">
+                <label for="variable-symbol">Símbolo (a-z)</label>
+                <input type="text" id="variable-symbol" maxlength="1" aria-describedby="variable-symbol-desc">
+                <small id="variable-symbol-desc" class="input-desc">Ingresa una letra minúscula (a-z).</small>
+              </div>
+              <div class="input-wrapper">
+                <label for="variable-meaning">Significado</label>
+                <input type="text" id="variable-meaning" aria-describedby="variable-meaning-desc">
+                <small id="variable-meaning-desc" class="input-desc">Describe el significado de la proposición.</small>
+              </div>
+              <button id="add-variable-btn" class="btn secondary-btn" aria-label="Añadir variable">Añadir</button>
             </div>
           </div>
           <ul id="variables-list" class="variables-list">
@@ -49,26 +59,28 @@
         <div class="expression-section">
           <h3>Expresión lógica</h3>
           <div class="expression-wrapper">
-            <input type="text" id="expression-input" placeholder="Ejemplo: p ∧ (q → r)">
+            <input type="text" id="expression-input" placeholder="La expresión lógica se generará automáticamente" disabled>
             <div class="symbols-help">
-              <span class="symbol-item" title="Y lógico">∧</span>
-              <span class="symbol-item" title="O lógico">∨</span>
-              <span class="symbol-item" title="Negación">¬</span>
-              <span class="symbol-item" title="Implicación">→</span>
-              <span class="symbol-item" title="Doble implicación">↔</span>
+              <button class="symbol-item" title="Y lógico" data-symbol="∧" aria-label="Insertar Y lógico (∧)">∧</button>
+              <button class="symbol-item" title="O lógico" data-symbol="∨" aria-label="Insertar O lógico (∨)">∨</button>
+              <button class="symbol-item" title="Negación" data-symbol="¬" aria-label="Insertar Negación (¬)">¬</button>
+              <button class="symbol-item" title="Implicación" data-symbol="→" aria-label="Insertar Implicación (→)">→</button>
+              <button class="symbol-item" title="Doble implicación" data-symbol="↔" aria-label="Insertar Doble implicación (↔)">↔</button>
+              <button class="symbol-item" title="Verdadero" data-symbol="⊤" aria-label="Insertar Verdadero (⊤)">⊤</button>
+              <button class="symbol-item" title="Falso" data-symbol="⊥" aria-label="Insertar Falso (⊥)">⊥</button>
             </div>
           </div>
         </div>
         
         <div class="action-buttons">
           <button id="analyze-btn" class="btn primary-btn" disabled>
-            <i class="icon-search"></i> Analizar
+            <i class="fas fa-search"></i> Analizar
           </button>
           <button id="clear-btn" class="btn secondary-btn">
-            <i class="icon-trash"></i> Limpiar
+            <i class="fas fa-trash"></i> Limpiar
           </button>
           <button id="export-json" class="btn tertiary-btn">
-            <i class="icon-download"></i> Exportar JSON
+            <i class="fas fa-download"></i> Exportar JSON
           </button>
         </div>
       </div>
@@ -84,7 +96,6 @@
       </div>
       <div class="card-content">
         <div id="history-container">
-          <!-- History items will be dynamically inserted here -->
           <p class="no-history">No hay análisis guardados.</p>
         </div>
       </div>
@@ -93,7 +104,7 @@
   
   <footer>
     <div class="container">
-      <p>Analizador de Proposiciones Lógicas &copy; 2025</p>
+      <p>Analizador de Proposiciones Lógicas © 2025</p>
       <p>Un proyecto para análisis de lógica proposicional</p>
     </div>
   </footer>
